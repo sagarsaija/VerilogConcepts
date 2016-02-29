@@ -1,0 +1,48 @@
+m255
+K3
+13
+cModel Technology
+Z0 dX:\ECE156a\hw1
+T_opt
+V4ZLm2J2D4EaD5h_D3l3>_2
+04 16 4 work eight_one_mux_tb fast 0
+=1-e06995c93ca7-525de70b-214-1dd8
+o-quiet -auto_acc_if_foreign -work work
+n@_opt
+OE;O;10.1b;51
+veight_one_mux
+V`1hZ>00A`8RKb1WQzDRQd3
+r1
+31
+IA:26i85YJcRimGe_^4kR:2
+Z1 dX:\ECE156a\hw1
+w1381801642
+8X:/ECE156a/hw1/eight_one_mux.v
+FX:/ECE156a/hw1/eight_one_mux.v
+L0 3
+Z2 OE;L;10.1b;51
+Z3 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!s100 oUflZ=XBUcMA5Y_jCW]:I0
+!s108 1381883446.696000
+!s107 X:/ECE156a/hw1/eight_one_mux.v|
+!s90 -reportprogress|300|-work|work|-vopt|X:/ECE156a/hw1/eight_one_mux.v|
+!i10b 1
+!s85 0
+veight_one_mux_tb
+IYHKMOa::E3FoKS01z7CIl1
+V;4XgLn[J_Qj@izfoM]6`V2
+R1
+w1381885684
+8X:/ECE156a/hw1/eight_one_mux_tb.v
+FX:/ECE156a/hw1/eight_one_mux_tb.v
+L0 3
+R2
+r1
+31
+R3
+!s90 -reportprogress|300|-work|work|-L|mtiAvm|-L|mtiOvm|-L|mtiUvm|-L|mtiUPF|X:/ECE156a/hw1/eight_one_mux_tb.v|
+!i10b 1
+!s100 [BX5bghR9c2dbHkPcOebN0
+!s85 0
+!s108 1381885692.716000
+!s107 X:/ECE156a/hw1/eight_one_mux_tb.v|

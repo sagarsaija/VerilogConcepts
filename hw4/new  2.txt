@@ -1,0 +1,35 @@
+module coinSensor_tb;
+wire penny, nickel, dime, quarter;
+reg reset, in, clk;
+reg [0:24] iStream = 25'b0010000100011100111001010; 
+integer i;
+coinSensor m0(clk, reset, in, penny, nickel, dime, quarter);
+initial
+begin
+
+	clk = 0;
+	in = 1;
+	#10;
+	a_reset = 1;
+	#90;
+end
+
+always
+begin
+	reset = 1;
+	@(posedge clk)
+	in = iStream[i];
+	if(i < 29)
+		i = i + 1;		
+end
+
+always
+	#50 clk = ~clk;
+
+
+
+ 
+
+
+
+endmodule

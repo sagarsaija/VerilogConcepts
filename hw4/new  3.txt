@@ -1,0 +1,54 @@
+module purchaseMngr_tb;
+wire [3:0] digTwo;
+wire [3:0] digOne;
+reg clk, buy, [2:0] product, [3:0] digTwo, [3:0] digOne;
+wire apple, banana, carrot, date, error;
+
+purchaseMngr m0(clk, buy, product, digTwo, digOne, apple, banana, carrot, date, error);
+initial
+begin
+	clk = 0;
+	{buy, product, digTwo, digOne} = 11'b00000000000;
+end
+
+initial 
+begin
+	@(posedge clk);
+		buy = 1;
+	@(posedge clk);
+		buy = 0;
+		digTwo = 7;
+	@(posedge clk);
+		buy = 1;
+	@(posedge clk);
+		buy = 0;
+		digOne = 5;
+	@(posedge clk);
+		buy = 1;
+	@(posedge clk);
+		digTwo = 4;
+		buy = 0;
+		product = 2'b01;
+	@(posedge clk);
+		buy = 1;
+	@(posedge clk);
+		buy = 0;
+		product = 2'b10;
+	@(posedge clk);
+		buy = 1;
+	@(posedge clk);
+		buy = 0;
+		product = 2'b11;
+	@(posedge clk);
+		buy = 1;
+	@(posedge clk);
+		buy = 0;
+	
+
+end
+
+always
+	#50 clk = ~clk;
+
+ 
+endmodule

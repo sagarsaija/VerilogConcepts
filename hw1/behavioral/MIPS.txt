@@ -1,0 +1,178 @@
+##############################################################################
+# File: sort.s
+# Skeleton for ECE 154A, Project 1
+##############################################################################
+
+	.data
+student:
+	.asciiz "Student:\n" 	# Place your name in the quotations in place of Student
+	.globl	student
+nl:	.asciiz "\n"
+	.globl nl
+sort_print:
+	.asciiz "[Info] Sorted values\n"
+	.globl sort_print
+initial_print:
+	.asciiz "[Info] Initial values\n"
+	.globl initial_print
+read_msg: 
+	.asciiz "[Info] Reading input data\n"
+	.globl read_msg
+code_start_msg:
+	.asciiz "[Info] Entering your section of code\n"
+	.globl code_start_msg
+
+arg1:	.word 6				# Provide the number of inputs
+arg2:	.word 268632064			# Provide the base address of array where data will be stored (Assuming 0x10030000 as base address)
+
+## Specify your input data-set in any order you like. I'll change the data set to verify
+data1:	.word 1
+data2:	.word 2
+data3:	.word 3
+data4:	.word 5
+data5:	.word 6
+data6:	.word 8
+
+	.text
+
+	.globl main
+main:					# main has to be a global label
+	addi	$sp, $sp, -4		# Move the stack pointer
+	sw 	$ra, 0($sp)		# save the return address
+			
+	li	$v0, 4			# print_str (system call 4)
+	la	$a0, student		# takes the address of string as an argument 
+	syscall	
+
+	jal process_arguments
+	jal read_data			# Read the input data
+
+	j	ready
+
+process_arguments:
+	la	$t0, arg1
+	lw	$a0, 0($t0)
+	la	$t0, arg2
+	lw	$a1, 0($t0)
+	jr	$ra	
+
+### This instructions will make sure you read the data correctly
+read_data:
+	move $t1, $a0
+	li $v0, 4
+	la $a0, read_msg
+	syscall
+	move $a0, $t1
+
+	la $t0, data1
+	lw $t4, 0($t0)
+	sw $t4, 0($a1)
+	la $t0, data2
+	lw $t4, 0($t0)
+	sw $t4, 4($a1)
+	la $t0, data3
+	lw $t4, 0($t0)
+	sw $t4, 8($a1)
+	la $t0, data4
+	lw $t4, 0($t0)
+	sw $t4, 12($a1)
+	la $t0, data5
+	lw $t4, 0($t0)
+	sw $t4, 16($a1)
+	la $t0, data6
+	lw $t4, 0($t0)
+	sw $t4, 20($a1)
+
+	jr	$ra
+
+
+radix_sort:
+######################### 
+## your code goes here ##
+#########################
+		
+
+#########################
+ 	jr $ra
+#########################
+
+
+##################################
+#Dont modify code below this line
+##################################
+ready:
+	jal	initial_values		# print operands to the console
+	
+	move 	$t2, $a0
+	li 	$v0, 4
+	la 	$a0, code_start_msg
+	syscall
+	move 	$a0, $t2
+
+	jal	radix_sort		# call radix sort algorithm
+
+	jal	sorted_list_print
+
+
+				# Usual stuff at the end of the main
+	lw	$ra, 0($sp)		# restore the return address
+	addi	$sp, $sp, 4
+	jr	$ra			# return to the main program
+
+print_results:
+	add $t0, $0, $a0 # No of elements in the list
+	add $t1, $0, $a1 # Base address of the array
+	move $t2, $a0    # Save a0, which contains element count
+
+loop:	
+	beq $t0, $0, end_print
+	addi, $t0, $t0, -1
+	lw $t3, 0($t1)
+	
+	li $v0, 1
+	move $a0, $t3
+	syscall
+
+	li $v0, 4
+	la $a0, nl
+	syscall
+
+	addi $t1, $t1, 4
+	j loop
+end_print:
+	move $a0, $t2 
+	jr $ra	
+
+initial_values: 
+	move $t2, $a0
+        addi	$sp, $sp, -4		# Move the stack pointer
+	sw 	$ra, 0($sp)		# save the return address
+
+	li $v0,4
+	la $a0,initial_print
+	syscall
+	
+	move $a0, $t2
+	jal print_results
+ 	
+	move $a0, $t2
+	lw	$ra, 0($sp)		# restore the return address
+	addi	$sp, $sp, 4
+
+	jr $ra
+
+sorted_list_print:
+	move $t2, $a0
+	addi	$sp, $sp, -4		# Move the stack pointer
+	sw 	$ra, 0($sp)		# save the return address
+
+	li $v0,4
+	la $a0,sort_print
+	syscall
+	
+	move $a0, $t2
+	jal print_results
+	
+	lw	$ra, 0($sp)		# restore the return address
+	addi	$sp, $sp, 4	
+	jr $ra

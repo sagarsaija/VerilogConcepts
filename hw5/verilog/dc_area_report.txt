@@ -1,0 +1,26 @@
+Information: Updating graph... (UID-83)
+ 
+****************************************
+Report : area
+Design : upCountTen
+Version: D-2010.03-SP1
+Date   : Sat Dec  7 14:48:57 2013
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    class (File: /ece/synopsys/synthesis/D-2010.03-SP1/libraries/syn/class.db)
+
+Number of ports:                7
+Number of nets:                27
+Number of cells:               20
+Number of references:          10
+
+Combinational area:         30.000000
+Noncombinational area:      36.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:            66.000000
+Total area:                 undefined
+1
